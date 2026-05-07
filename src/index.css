@@ -1,0 +1,243 @@
+
+:root {
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color-primary: #667eea;
+    --color-danger: #e53e3e;
+    --color-input-bg: #f8f9fc;
+    --color-empty-icon: #c4c4c4;
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+    --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --radius-card: 16px;
+    --radius-btn: 10px;
+    --radius-btn-save: 12px;
+}
+
+.page-wrapper {
+    min-height: calc(100vh - 56px);
+    display: flex;
+    justify-content: center;
+}
+
+.page-wrapper--centered {
+    align-items: center;
+}
+
+.page-wrapper--top {
+    padding-top: 2rem;
+}
+
+.page-content {
+    width: 100%;
+    max-width: 620px;
+    padding: 0 1rem;
+}
+
+.page-content--narrow {
+    max-width: 520px;
+}
+
+.header-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--gradient-primary);
+}
+
+.page-title {
+    letter-spacing: -0.5px;
+}
+
+.app-card {
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+}
+
+.contact-card {
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.contact-link {
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-link:hover h6 {
+    color: var(--color-primary);
+}
+
+.contact-avatar {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    object-fit: cover;
+}
+
+.icon-accent {
+    color: var(--color-primary);
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+    color: var(--color-empty-icon);
+}
+
+.btn-action {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-btn);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action--edit {
+    background: var(--color-input-bg);
+    color: #999;
+}
+
+.btn-action--delete {
+    background: #fff0f0;
+    color: var(--color-danger);
+    transition: background 0.2s ease;
+}
+
+.btn-action--delete:hover {
+    background: #ffe0e0;
+}
+
+.input-bg {
+    background: var(--color-input-bg);
+}
+
+.form-control.input-bg {
+    padding: 12px;
+}
+
+.btn-save {
+    background: var(--gradient-primary);
+    border-radius: var(--radius-btn-save);
+    border: none;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
+.back-link {
+    color: var(--color-primary);
+}
+
+.back-link:hover {
+    color: #764ba2;
+}
+
+.spinner-primary {
+    color: var(--color-primary);
+    width: 3rem;
+    height: 3rem;
+}
+
+.app-navbar {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient-primary);
+    font-size: 0.85rem;
+}
+
+.navbar-title {
+    font-size: 1.15rem;
+    letter-spacing: -0.3px;
+    color: #1a1a2e;
+}
+
+.btn-nav-add {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-btn);
+    padding: 8px 18px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-nav-add:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    color: white;
+}
+
+.btn-nav-add:active {
+    transform: translateY(0);
+}
+
+.detail-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.detail-row {
+    background: var(--color-input-bg);
+    border-radius: var(--radius-btn);
+    transition: background 0.2s ease;
+}
+
+.detail-row:hover {
+    background: #eef0f8;
+}
+
+.detail-row-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: var(--gradient-primary);
+    font-size: 0.85rem;
+}
+
+.app-footer {
+    background: white;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.04);
+    margin-top: auto;
+}
+
+.footer-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--gradient-primary);
+    font-size: 0.7rem;
+}
+
+.footer-title {
+    font-size: 0.9rem;
+    letter-spacing: -0.3px;
+    color: #1a1a2e;
+}
+
+.footer-copy {
+    color: #999;
+}
+
+.footer-heart {
+    color: var(--color-primary);
+    font-size: 0.7rem;
+}
