@@ -11,10 +11,10 @@ import ContactDetail from "./pages/ContactDetail";
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>}>
-            <Route path="/" element={<ContactPage />} />
-            <Route path="/add-contact" element={<AddContactForm />} />
-            <Route path="/contact/:contactId" element={<ContactDetail />} />
-            <Route path="/edit-contact/:contactId" element={<h1>Edit Contact (coming soon)</h1>} />
+            <Route index element={<ContactPage />} />
+            <Route path="add-contact" element={<AddContactForm />} />
+            <Route path="contact/:contactId" element={<ContactDetail />} />
+            <Route path="edit-contact/:contactId" element={<h1>Edit Contact (coming soon)</h1>} />
         </Route>
     )
 );
