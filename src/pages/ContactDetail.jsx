@@ -11,6 +11,7 @@ const ContactDetail = () => {
     const loadContact = async () => {
         try {
             const found = await getContactById(contactId);
+            console.log("Contact data:", found);
             setContact(found);
         } catch (error) {
             console.error("Error fetching contact:", error);
