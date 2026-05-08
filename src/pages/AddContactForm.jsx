@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createContact } from "../services/api";
+import useGlobalReducer from "../hooks/useGlobalReducer";
+import { addContact } from "../store";
 import "../index.css";
  
 const AddContactForm = () => {
+    const { dispatch } = useGlobalReducer();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
@@ -21,15 +23,13 @@ const AddContactForm = () => {
         e.preventDefault();
         setSaving(true);
  
-        try {
-            await createContact(formData);
+        const success = await addContact(dispatch, formData);
+        if (success) {
             navigate("/");
-        } catch (error) {
-            console.error("Error creating contact:", error);
+        } else {
             alert("Hubo un error al guardar el contacto. Inténtalo de nuevo.");
-        } finally {
-            setSaving(false);
         }
+        setSaving(false);
     };
 
     return (

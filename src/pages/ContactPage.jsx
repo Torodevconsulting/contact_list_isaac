@@ -1,40 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getContacts, deleteContact as deleteContactApi } from "../services/api";
+import useGlobalReducer from "../hooks/useGlobalReducer";
+import { fetchContacts, removeContact } from "../store";
 import "../index.css";
-
+ 
 const ContactPage = () => {
-    const [contacts, setContacts] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const loadContacts = async () => {
-        try {
-            const data = await getContacts();
-            setContacts(data);
-        } catch (error) {
-            console.error("Error fetching contacts:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
+    const { store, dispatch } = useGlobalReducer();
+ 
+    useEffect(() => {
+        fetchContacts(dispatch);
+    }, []);
+ 
     const handleDelete = async (id) => {
         const confirmDelete = window.confirm("¿Estás seguro de que quieres eliminar este contacto?");
         if (!confirmDelete) return;
-
-        try {
-            await deleteContactApi(id);
-            setContacts((prev) => prev.filter((contact) => contact.id !== id));
-        } catch (error) {
-            console.error("Error deleting contact:", error);
-        }
+        await removeContact(dispatch, id);
     };
-
-    useEffect(() => {
-        loadContacts();
-    }, []);
-
-    if (loading) {
+ 
+    if (store.loading) {
         return (
             <div className="page-wrapper page-wrapper--centered">
                 <div className="spinner-border spinner-primary" role="status">
@@ -53,18 +36,18 @@ const ContactPage = () => {
                     </div>
                     <h2 className="fw-bold mb-1 page-title">My Contacts</h2>
                     <p className="text-muted small">
-                        {contacts.length} {contacts.length === 1 ? "contact" : "contacts"} in your agenda
+                        {store.contacts.length} {store.contacts.length === 1 ? "contact" : "contacts"} in your agenda
                     </p>
                 </div>
 
-                {contacts.length === 0 ? (
+                {store.contacts.length === 0 ? (
                     <div className="card border-0 p-5 text-center app-card">
                         <i className="fas fa-user-slash mb-3 empty-icon"></i>
                         <p className="text-muted mb-0">No contacts yet. Add your first one!</p>
                     </div>
                 ) : (
                     <div className="d-flex flex-column gap-3">
-                        {contacts.map((contact) => (
+                        {store.contacts.map((contact) => (
                             <div
                                 key={contact.id}
                                 className="card border-0 p-3 d-flex flex-row align-items-center justify-content-between contact-card"
