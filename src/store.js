@@ -1,4 +1,4 @@
-import { getContacts, createContact, updateContact, deleteContact as deleteContactApi, getContactById } from "./services/api";
+import { getContacts, createContact, updateContact, deleteContact as deleteContactApi, } from "./services/api";
 
 export const initialStore = () => {
     return {
