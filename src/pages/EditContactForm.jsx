@@ -3,59 +3,59 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { editContact, fetchContacts } from "../store";
 import "../index.css";
- 
+
 const EditContactForm = () => {
-    const { contactId } = useParams();
-    const { store, dispatch } = useGlobalReducer();
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-    });
-    const [loading, setLoading] = useState(true);
-    const [saving, setSaving] = useState(false);
- 
-    useEffect(() => {
-        // Si el store está vacío (por refresh), cargar contactos primero
-        if (store.contacts.length === 0) {
-            fetchContacts(dispatch);
-        }
-    }, []);
- 
-    useEffect(() => {
-        // Cuando los contactos estén en el store, buscar el contacto por ID
-        const contact = store.contacts.find((c) => c.id === parseInt(contactId));
-        if (contact) {
-            setFormData({
-                name: contact.name || "",
-                email: contact.email || "",
-                phone: contact.phone || "",
-                address: contact.address || "",
-            });
-            setLoading(false);
-        } else if (!store.loading) {
-            setLoading(false);
-        }
-    }, [store.contacts, contactId]);
- 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
- 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setSaving(true);
- 
-        const success = await editContact(dispatch, contactId, formData);
-        if (success) {
-            navigate("/");
-        } else {
-            alert("Hubo un error al actualizar el contacto. Inténtalo de nuevo.");
-        }
-        setSaving(false);
-    };
+        const { contactId } = useParams();
+        const { store, dispatch } = useGlobalReducer();
+        const navigate = useNavigate();
+        const [formData, setFormData] = useState({
+                name: "",
+                email: "",
+                phone: "",
+                address: "",
+        });
+        const [loading, setLoading] = useState(true);
+        const [saving, setSaving] = useState(false);
+
+        useEffect(() => {
+                // Si el store está vacío (por refresh), cargar contactos primero
+                if (store.contacts.length === 0) {
+                        fetchContacts(dispatch);
+                }
+        }, []);
+
+        useEffect(() => {
+                // Cuando los contactos estén en el store, buscar el contacto por ID
+                const contact = store.contacts.find((c) => c.id === parseInt(contactId));
+                if (contact) {
+                        setFormData({
+                                name: contact.name || "",
+                                email: contact.email || "",
+                                phone: contact.phone || "",
+                                address: contact.address || "",
+                        });
+                        setLoading(false);
+                } else if (!store.loading) {
+                        setLoading(false);
+                }
+        }, [store.contacts, contactId]);
+
+        const handleChange = (e) => {
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+        };
+
+        const handleSubmit = async (e) => {
+                e.preventDefault();
+                setSaving(true);
+
+                const success = await editContact(dispatch, contactId, formData);
+                if (success) {
+                        navigate("/");
+                } else {
+                        alert("Hubo un error al actualizar el contacto. Inténtalo de nuevo.");
+                }
+                setSaving(false);
+        };
 
         if (loading) {
                 return (

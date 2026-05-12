@@ -71,3 +71,20 @@ $ vercel --prod
 ## Contribuidores
 
 Esta plantilla fue construida como parte del [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuidores. Descubre más sobre nuestro [Curso de Desarrollador Full Stack](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), [Curso de data-science](https://4geeksacademy.com/es/coding-bootcamps/curso-datascience-machine-learning) y [Curso de Ciberseguridad](https://4geeksacademy.com/es/coding-bootcamps/curso-ciberseguridad).
+
+
+## Notas del alumno Isaac Toro
+
+Las llamadas HTTP están centralizadas en /services/api.js como servicio separado. En store.js solo tengo el reducer y los action creators que consumen a api.js y dispatchean el resultado. No hay fetch directo en el store.
+
+Flujo:
+Componente → action creator (store.js) → api.js (HTTP) → API de 4Geeks
+                    ↓
+              dispatch → reducer → actualiza estado
+
+Los action creators son las funciones que conectan nuestros componentes con el store. Son el intermediario que decide "qué hacer" y "qué datos enviar" al reducer.
+
+Cada uno hace dos cosas en este orden:
+
+1) Llama a la API (a través de api.js) para obtener o enviar datos
+2) Dispatchea una action al reducer para actualizar el estado global
