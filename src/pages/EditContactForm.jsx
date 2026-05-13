@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { editContact, fetchContacts } from "../store";
+import { fetchContacts, editContact } from "../services/services";
 import "../index.css";
 
 const EditContactForm = () => {

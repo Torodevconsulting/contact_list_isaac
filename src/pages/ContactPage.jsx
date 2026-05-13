@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { fetchContacts, removeContact } from "../store";
+import { fetchContacts, removeContact } from "../services/services";
 import "../index.css";
  
 const ContactPage = () => {
